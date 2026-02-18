@@ -6,9 +6,31 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <h1>Your beautiful face ❤️</h1>
 
-    <div class="gallery">
+    <!-- Image Slideshow -->
+    <div class="slideshow" id="slideshow">
+        <div class="slides">
+            <img src="images/1.jpg" alt="Memory 1">
+            <img src="images/2.jpg" alt="Memory 2">
+            <img src="images/3.jpg" alt="Memory 3">
+            <img src="images/4.jpg" alt="Memory 4">
+            <img src="images/5.jpg" alt="Memory 5">
+            <img src="images/6.jpg" alt="Memory 6">
+            <img src="images/7.jpg" alt="Memory 7">
+            <img src="images/8.jpg" alt="Memory 8">
+            <img src="images/9.jpg" alt="Memory 9">
+            <img src="images/10.jpg" alt="Memory 10">
+        </div>
+        <div class="slideshow-controls">
+            <button id="prev" class="nav">‹</button>
+            <button id="next" class="nav">›</button>
+        </div>
+    </div>
+
+    <!-- keep existing gallery thumbnails if you want small preview images -->
+    <div class="gallery-thumbs" aria-hidden="true">
         <img src="images/1.jpg" alt="Memory 1">
         <img src="images/2.jpg" alt="Memory 2">
         <img src="images/3.jpg" alt="Memory 3">
@@ -19,10 +41,58 @@
         <img src="images/8.jpg" alt="Memory 8">
         <img src="images/9.jpg" alt="Memory 9">
         <img src="images/10.jpg" alt="Memory 10">
-    
+        
     </div>
 
+    <h2>Our Video Moments ❤️</h2>
 
+    <div class="video-gallery">
+        <video class="video-item" playsinline autoplay loop muted preload="metadata" controls poster="images/1.jpg">
+            <source src="vidoes/video1.MP4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <video class="video-item" playsinline autoplay loop muted preload="metadata" controls poster="images/2.jpg">
+            <source src="vidoes/video2.MP4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <video class="video-item" playsinline autoplay loop muted preload="metadata" controls poster="images/3.jpg">
+            <source src="vidoes/video3.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <video class="video-item" playsinline autoplay loop muted preload="metadata" controls poster="images/4.jpg">
+            <source src="vidoes/video4.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <video class="video-item" playsinline autoplay loop muted preload="metadata" controls poster="images/5.jpg">
+            <source src="vidoes/video5.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <script>
+        (function(){
+            const slides = document.querySelector('.slides');
+            const imgs = slides ? slides.children : [];
+            let index = 0;
+            const total = imgs.length;
+            if (!slides || total === 0) return;
+
+            function goTo(i){
+                slides.style.transform = `translateX(-${i * 100}%)`;
+            }
+
+            let interval = setInterval(()=>{
+                index = (index + 1) % total;
+                goTo(index);
+            }, 3000);
+
+            // controls
+            const prev = document.getElementById('prev');
+            const next = document.getElementById('next');
+            prev.addEventListener('click', ()=>{ clearInterval(interval); index = (index - 1 + total) % total; goTo(index); interval = setInterval(()=>{ index = (index + 1) % total; goTo(index); }, 3000); });
+            next.addEventListener('click', ()=>{ clearInterval(interval); index = (index + 1) % total; goTo(index); interval = setInterval(()=>{ index = (index + 1) % total; goTo(index); }, 3000); });
+        })();
+    </script>
 
 </body>
 </html>
