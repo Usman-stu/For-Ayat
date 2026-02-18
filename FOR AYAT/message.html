@@ -46,10 +46,12 @@
 
         <p class="message-line">Forever yours with all my love and devotion,<br>Usman</p>
 
-<!-- AUDIO CODE GOES HERE -->
-        <audio id="loveAudio" src="audio/love.mp3" type="audio/mpeg"></audio>
-
-       
+        <!-- Audio Section -->
+        <div class="audio-section">
+            <button id="readBtn" class="btn audio-btn">🎵 Listen to Me ❤️</button>
+            <button id="stopBtn" class="btn audio-btn" style="display: none;">⏹️ Stop</button>
+            <audio id="loveAudio" src="audio/love.mp3" type="audio/mpeg"></audio>
+        </div>
 
         <br><br>
         <a href="gallery.html" class="btn">Tap to see something nice 📸</a>
@@ -70,15 +72,72 @@
         }
         setInterval(createHeart, 300);
 
-        
-        // Play Audio Button
-                const playBtn = document.getElementById('playHeart');
+        // Audio Playback & Text-to-Speech
+        const readBtn = document.getElementById('readBtn');
+        const stopBtn = document.getElementById('stopBtn');
         const audio = document.getElementById('loveAudio');
+        let isReading = false;
+        let speechSynthesisUtterance = null;
 
-        playBtn.addEventListener('click', () => {
-            audio.play();
-        });
+        // Get all message text
+        function getMessageText() {
+            const messageLines = document.querySelectorAll('.message-line');
+            let fullText = '';
+            messageLines.forEach(line => {
+                fullText += line.innerText + ' ';
+            });
+            return fullText;
+        }
 
+        // Check if audio file exists
+        function audioFileExists() {
+            return new Promise((resolve) => {
+                const xhr = new XMLHttpRequest();
+                xhr.open('HEAD', 'audio/love.mp3', true);
+                xhr.onload = () => resolve(xhr.status !== 404);
+                xhr.onerror = () => resolve(false);
+                xhr.send();
+            });
+        }
+
+        // Play audio file or use text-to-speech
+        async function startReading() {
+            if (isReading) return;
+            isReading = true;
+            readBtn.style.display = 'none';
+            stopBtn.style.display = 'inline-block';
+
+            // Try to play audio file first
+            const hasAudio = await audioFileExists();
+            if (hasAudio) {
+                audio.play();
+                audio.addEventListener('ended', stopReading);
+            } else {
+                // Fallback to text-to-speech
+                const messageText = getMessageText();
+                speechSynthesisUtterance = new SpeechSynthesisUtterance(messageText);
+                speechSynthesisUtterance.rate = 1;
+                speechSynthesisUtterance.pitch = 1;
+                speechSynthesisUtterance.volume = 1;
+                
+                speechSynthesisUtterance.addEventListener('end', stopReading);
+                speechSynthesisUtterance.addEventListener('error', stopReading);
+                
+                window.speechSynthesis.speak(speechSynthesisUtterance);
+            }
+        }
+
+        function stopReading() {
+            isReading = false;
+            readBtn.style.display = 'inline-block';
+            stopBtn.style.display = 'none';
+            audio.pause();
+            audio.currentTime = 0;
+            window.speechSynthesis.cancel();
+        }
+
+        readBtn.addEventListener('click', startReading);
+        stopBtn.addEventListener('click', stopReading);
     </script>
 
 </body>

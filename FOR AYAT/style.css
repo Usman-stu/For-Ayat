@@ -216,7 +216,38 @@ p {
     }
 }
 
-/* Message lines - display in single line with wrapping */
+/* Audio Section */
+.audio-section {
+    margin: 25px auto;
+    padding: 20px 15px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 15px;
+    max-width: 400px;
+    backdrop-filter: blur(10px);
+}
+
+.audio-btn {
+    display: inline-block;
+    padding: 12px 20px;
+    background: white;
+    color: #ff4d6d;
+    border: none;
+    border-radius: 30px;
+    margin: 8px 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: clamp(14px, 3vw, 16px);
+}
+
+.audio-btn:hover {
+    background: #ffe6ec;
+    transform: scale(1.05);
+}
+
+.audio-btn:active {
+    transform: scale(0.95);
+}
 .message-line {
     display: block;
     width: 100%;
