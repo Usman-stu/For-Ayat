@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Valentine ❤️</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Ayatullahi ❤️</h1>
+
+        <p class="message-line">Ayatullahi Olugbode Oluwanimgbani Timileyin Mi ❤️</p>
+
+        <p class="message-line">Valentine's Day is a celebration of love and I'm using this moment to remind you how deeply I love you with all my heart and soul always.</p>
+
+        <p class="message-line">From the very first moment I had feelings for you, something inside me knew it felt like I had found the one who matches me completely forever.</p>
+
+        <p class="message-line">Over these 3 years || 37 months || 162 weeks || 1,140 days || 27,360 hours || 1,641,600 minutes and millions of unforgettable moments and memories together.</p>
+
+        <p class="message-line">We've shared so many beautiful memories and good times I can't even count, and even the challenging moments that helped us grow even stronger together.</p>
+
+        <p class="message-line">Through it all, I appreciate you for your patience, understanding, and for choosing to walk this beautiful journey with me every single day without any fail.</p>
+
+        <p class="message-line">Being with you has taught me how to love better, treat you right, appreciate you, and solve problems together instead of drifting apart from each other.</p>
+
+        <p class="message-line">Not a single day goes by without you crossing my mind and making me smile no matter what I'm doing or where I am in this world.</p>
+
+        <p class="message-line">I still remember how it all started from late night calls, giggles, video calls during your night shifts, hospital gists, and patient stories you shared with me.</p>
+
+        <p class="message-line">I remember how vulnerable you were telling me about your cyst and how much it meant that you trusted me with something so personal and very dear to your heart.</p>
+
+        <p class="message-line">Loving someone truly means standing by them no matter what and I was there worried on the day of your surgery supporting you so completely and fully.</p>
+
+        <p class="message-line">Seeing you now, healthy and glowing, makes my heart so incredibly full and reminds me why I fell in love with you in the very first place always.</p>
+
+        <p class="message-line">Loving you has never been a burden but has always been a blessing and the best decision I've made in my entire life without any regrets whatsoever.</p>
+
+        <p class="message-line">The issues we've faced in the past do not define us; they've only strengthened what we share and made our bond even more unbreakable than ever before.</p>
+
+        <p class="message-line">I love you and that will never change no matter what life throws at us because you are my forever and always my one and only true love.</p>
+
+        <p class="message-line">Here's to handling future challenges with more wisdom, to many more years of love, and to a long-term commitment built on happiness, support, and deep peace.</p>
+
+        <p class="message-line">I love you and that is never going to stop, not today, not tomorrow, not ever in this lifetime or any other lifetime that may come to be ❤️</p>
+
+        <p class="message-line">Forever yours with all my love and devotion,<br>Usman</p>
+
+<!-- AUDIO CODE GOES HERE -->
+        <audio id="loveAudio" src="audio/love.mp3" type="audio/mpeg"></audio>
+
+       
+
+        <br><br>
+        <a href="gallery.html" class="btn">Tap to see something nice 📸</a>
+    </div>
+
+    <!-- Floating Hearts Script -->
+    <script>
+        const colors = ["#ff4d6d", "#ff758c", "#ffb3c1"];
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = Math.random() * 20 + 15 + 'px';
+            heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+            heart.textContent = '❤️';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+        setInterval(createHeart, 300);
+
+        
+        // Play Audio Button
+                const playBtn = document.getElementById('playHeart');
+        const audio = document.getElementById('loveAudio');
+
+        playBtn.addEventListener('click', () => {
+            audio.play();
+        });
+
+    </script>
+
+</body>
+</html>
